@@ -40,10 +40,10 @@ public class Main {
             Map<String, List<String>> params = parseQueryParams(exchange.getRequestURI().getQuery());
 
             if (params.containsKey("epochTime")) {
-
                 long epochTime = Long.parseLong(params.get("epochTime").get(0));
                 var dateTime = convertEpochToDateTime(epochTime);
-                LOGGER.info(String.format("Converted provided epoch time: " + epochTime + "to Date Time Format: " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))));
+                String format = dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                LOGGER.info("Converted provided epoch time: " + epochTime + "to Date Time Format: " + format);
 
                 String htmlResponse = "<!DOCTYPE html>\n" +
                         "<html>\n" +
