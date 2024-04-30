@@ -14,16 +14,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
+
 
 public class Main {
     private static HttpServer server;
-
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
     public static void main(String[] args) throws IOException {
-
         server = HttpServer.create(new InetSocketAddress(8000), 0);
         server.createContext("/convert", new EpochHandler());
         server.start();
-        System.out.println("Service URL : http://localhost:8000/convert?epochTime=");
+        LOGGER.info("Service URL : http://localhost:8000/convert?epochTime=");
 
     }
 
@@ -42,7 +43,7 @@ public class Main {
 
                 long epochTime = Long.parseLong(params.get("epochTime").get(0));
                 var dateTime = convertEpochToDateTime(epochTime);
-                System.out.println("Converted provided epoch time : " + epochTime + " to Date Time Format : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+                LOGGER.info("Converted provided epoch time : " + epochTime + " to Date Time Format : " + dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 
                 String htmlResponse = "<!DOCTYPE html>\n" +
                         "<html>\n" +

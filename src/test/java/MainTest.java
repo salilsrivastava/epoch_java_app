@@ -49,7 +49,7 @@ public class MainTest {
                 .build();
 
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(response.statusCode(), 200);
+        assertEquals(200, response.statusCode());
         String resBody = new String(response.body().getBytes(StandardCharsets.UTF_8));
         assertTrue(resBody.contains("""
                    <div class="card">
@@ -69,7 +69,7 @@ public class MainTest {
                 .build();
 
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        assertEquals(response.statusCode(), 405);
+        assertEquals(405, response.statusCode());
 
         Main.stopServer();
     }
