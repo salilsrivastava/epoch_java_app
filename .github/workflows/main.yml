@@ -24,6 +24,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: SonarCloud Scan
-        run: ./mvnw -B verify sonar:sonar -Dsonar.projectKey=salilsrivastava_epoch_java_app -Dsonar.organization=salilsrivastava -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+        run: mvn -B verify sonar:sonar -Dsonar.projectKey=salilsrivastava_epoch_java_app -Dsonar.organization=salilsrivastava -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
         env:
           SONAR_TOKEN: '${{ secrets.SONAR_TOKEN }}'
