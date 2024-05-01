@@ -18,6 +18,21 @@ jobs:
         run: mvn -B package --file pom.xml
       - name: Test
         run: mvn test
+        
+  checkstyle_job:
+    runs-on: ubuntu-latest
+    name: Lint job
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Run check style
+      uses: nikitasavinov/checkstyle-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        reporter: 'github-pr-check'
+        tool_name: 'testtool'
+
+        
   sonarcloud:
     runs-on: ubuntu-latest
     steps:
